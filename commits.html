@@ -58,6 +58,12 @@
             $scope.from = _.min($scope.commits, "ts").ts;
             $scope.to = _.max($scope.commits, "ts").ts;
             $scope.timeSpan = moment.duration(moment($scope.from).diff(moment($scope.to))).humanize();
+            $scope.checkAllAuthors = function() {
+              $scope.selected.authors = angular.copy($scope.authors);
+            };
+            $scope.uncheckAllAuthors = function() {
+              $scope.selected.authors = [];
+            };
         });
     </script>
 </head>
@@ -98,6 +104,8 @@
             <label ng-repeat="author in authors" ng-attr-style="{{'color: ' + c.colors[$index] }}">
                 <input type="checkbox" checklist-model="selected.authors" checklist-value="author"> {{author}}
             </label>
+            <button ng-click="checkAllAuthors()" style="margin: 0 0 5px 5px">All authors</button>
+            <button ng-click="uncheckAllAuthors()" style="margin: 0 0 5px 5px">None</button>
         </div>
         </body>
     </foreignObject>

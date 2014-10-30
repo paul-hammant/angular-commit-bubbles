@@ -61,9 +61,6 @@
             $scope.checkAllAuthors = function() {
               $scope.selected.authors = angular.copy($scope.authors);
             };
-            $scope.uncheckAllAuthors = function() {
-              $scope.selected.authors = [];
-            };
         });
     </script>
 </head>
@@ -105,7 +102,7 @@
                 <input type="checkbox" checklist-model="selected.authors" checklist-value="author"> {{author}}
             </label>
             <button ng-click="checkAllAuthors()" style="margin: 0 0 5px 5px">All authors</button>
-            <button ng-click="uncheckAllAuthors()" style="margin: 0 0 5px 5px">None</button>
+            <button ng-click="selected.authors.splice(0,selected.authors.length)" style="margin: 0 0 5px 5px">None</button>
         </div>
         </body>
     </foreignObject>

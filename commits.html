@@ -66,39 +66,39 @@
 </head>
 <body ng-app="app" ng-controller="CommitBubbles" bgcolor="#FFFFFF">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" width="1220"
-     ng-attr-height="{{c.chartHeight + c.topMargin + 5}}"
+     height="{{c.chartHeight + c.topMargin + 5}}"
      xmlns:dc="http://purl.org/dc/elements/1.1/">
-    <rect fill="#FEFCFF" x="100" y="{{c.topMargin}}" width="1100" ng-attr-height="{{c.chartHeight}}" ng-click="selected.commit = false"/>
+    <rect fill="#FEFCFF" x="100" y="{{c.topMargin}}" width="1100" height="{{c.chartHeight}}" ng-click="selected.commit = false"/>
     <g font-family="Verdana" font-size="16">
-        <text x="0" ng-attr-y="{{c.topMargin + 8}}">All Test</text>
-        <text x="0" ng-attr-y="{{c.chartHeight/2 + 5 + c.topMargin}}">Equal</text>
-        <text x="0" ng-attr-y="{{c.chartHeight + c.topMargin}}">All Prod</text>
-        <text x="1140" ng-attr-y="{{c.chartHeight/2 + 17 + c.topMargin}}">Time &#10148;</text>
+        <text x="0" y="{{c.topMargin + 8}}">All Test</text>
+        <text x="0" y="{{c.chartHeight/2 + 5 + c.topMargin}}">Equal</text>
+        <text x="0" y="{{c.chartHeight + c.topMargin}}">All Prod</text>
+        <text x="1140" y="{{c.chartHeight/2 + 17 + c.topMargin}}">Time &#10148;</text>
     </g>
     <g style="stroke:rgb(0,0,0);stroke-width:2">
-        <line x1="100" ng-attr-y1="{{c.chartHeight/2 + c.topMargin}}" x2="1200" ng-attr-y2="{{c.chartHeight/2 + c.topMargin}}" />
-        <line x1="100" ng-attr-y1="{{c.topMargin +2}}" x2="100" ng-attr-y2="{{c.chartHeight + c.topMargin+2}}"/>
+        <line x1="100" y1="{{c.chartHeight/2 + c.topMargin}}" x2="1200" y2="{{c.chartHeight/2 + c.topMargin}}" />
+        <line x1="100" y1="{{c.topMargin +2}}" x2="100" y2="{{c.chartHeight + c.topMargin+2}}"/>
     </g>
     <g font-family="Verdana" font-size="8" ng-repeat="i in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" style="stroke:rgb(0,0,0);stroke-width:0.5">
         <line ng-show="i != 5" x1="100" stroke-dasharray="10,35"
-              ng-attr-y1="{{c.chartHeight + 2 - (c.chartHeight/10 * i) + c.topMargin}}" x2="1200"
-              ng-attr-y2="{{c.chartHeight - (c.chartHeight/10 * i) + c.topMargin}}" />
-        <text fill="white" x="70" ng-attr-y="{{c.chartHeight + 3  - (c.chartHeight/10 * i) + c.topMargin}}">{{100 - (10*i)}}:{{(10*i)}}</text>
+              y1="{{c.chartHeight + 2 - (c.chartHeight/10 * i) + c.topMargin}}" x2="1200"
+              y2="{{c.chartHeight - (c.chartHeight/10 * i) + c.topMargin}}" />
+        <text fill="white" x="70" y="{{c.chartHeight + 3  - (c.chartHeight/10 * i) + c.topMargin}}">{{100 - (10*i)}}:{{(10*i)}}</text>
     </g>
     <g stroke="black">
         <circle ng-repeat="commit in commits" ng-show="selected.authors.indexOf(commit.author) > -1"
-                ng-attr-cx="{{100 + (commit.ts - from) * 1100 / (to - from) }}"
-                ng-attr-cy="{{c.chartHeight - (commit.testPercentage * c.chartHeight/100) + c.topMargin}}"
-                ng-attr-r="{{commit.size * (c.chartHeight/600)}}"
-                ng-attr-stroke-opacity="{{(selected.commit === commit) ? 1 : 0}}"
-                ng-attr-fill="{{c.colors[authors.indexOf(commit.author)]}}" fill-opacity="0.5"
+                cx="{{100 + (commit.ts - from) * 1100 / (to - from) }}"
+                cy="{{c.chartHeight - (commit.testPercentage * c.chartHeight/100) + c.topMargin}}"
+                r="{{commit.size * (c.chartHeight/600)}}"
+                stroke-opacity="{{(selected.commit === commit) ? 1 : 0}}"
+                fill="{{c.colors[authors.indexOf(commit.author)]}}" fill-opacity="0.5"
                 ng-click="selected.commit = commit"/>
     </g>
-    <foreignObject class="node" x="0" y="0" width="1200" ng-attr-height="{{c.topMargin}}">
+    <foreignObject class="node" x="0" y="0" width="1200" height="{{c.topMargin}}">
         <body xmlns="http://www.w3.org/1999/xhtml">
         <h2>{{timeSpan}} shown between {{from | date:'MM/dd/yy HH:mm'}} and {{to | date:'MM/dd/yy HH:mm'}}</h2>
         <div>Show authors:
-            <label ng-repeat="author in authors" ng-attr-style="{{'color: ' + c.colors[$index] }}">
+            <label ng-repeat="author in authors" style="{{'color: ' + c.colors[$index] }}">
                 <input type="checkbox" checklist-model="selected.authors" checklist-value="author"> {{author}}
             </label>
             <button ng-click="checkAllAuthors()" style="margin: 0 0 5px 5px">All authors</button>
